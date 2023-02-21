@@ -22,16 +22,18 @@
         let btn2 = document.getElementById("btn2")
         let num = 99999
         let value = 0
-        function calc (){
-            while(num > 0) {
+        function calc (deadline){
+            
+            while(num > 0 && deadline.timeRemaining() > 1) {
                 value = Math.random() < 0.5 ? Math.random() : Math.random()
                 console.log(value)
                 num--
             }
+            requestIdleCallback(calc)
         }
 
         btn1.onclick = function(){
-            calc()
+            requestIdleCallback(calc)
         }
         btn2.onclick = function(){
             box.style.background = "blue"
