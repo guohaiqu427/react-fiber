@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            padding: 20px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <button id="btn1">calc</button>
+    <button id="btn2">change color</button>
+    <script>
+        let box = document.getElementById("box")
+        let btn1 = document.getElementById("btn1")
+        let btn2 = document.getElementById("btn2")
+        let num = 99999
+        let value = 0
+        function calc (){
+            while(num > 0) {
+                value = Math.random() < 0.5 ? Math.random() : Math.random()
+                console.log(value)
+                num--
+            }
+        }
+
+        btn1.onclick = function(){
+            calc()
+        }
+        btn2.onclick = function(){
+            box.style.background = "blue"
+        }
+</script>
+</body>
+</html>
