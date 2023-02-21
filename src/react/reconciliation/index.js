@@ -1,5 +1,4 @@
-import {createTaskQueue} from "../Misc"
-
+import {createTaskQueue,arrified} from "../Misc"
 const taskQueue = createTaskQueue()
 let subTask = null
 
@@ -47,5 +46,39 @@ const getFirstTask = () => {
         child: null
     }
 }
-const executeTask = fiber => {}
+const executeTask = fiber => {
+    reconcileChildren(fiber, fiber.props.children)
+    console.log(fiber)
+}
 
+const reconcileChildren =  (fiber, children) => {
+    // children --> array 
+    const arrifiedChildren = arrified(children)
+
+    let index = 0
+    let numberOfElements = arrifiedChildren.length
+    let element = null
+    let newFiber = null 
+    let prevFiber =null
+
+    while (index < numberOfElements) {
+        element = arrifiedChildren[index]
+        console.log(element)
+        newFiber = {
+            type: element.type,
+            props: element.props,
+            tag: "host_component",
+            effects:[],
+            effectTag: "placement",
+            stateNode: null,
+            parent: fiber,
+        }
+        if(index === 0 ) {
+         fiber.child = newFiber
+        }else{
+            prevFiber.sibling = newFiber
+        }
+        prevFiber = newFiber
+        index++
+    }
+}
