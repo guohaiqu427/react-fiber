@@ -1,1 +1,10 @@
-console.log("from client js1")
+import React, {render} from "./react"
+
+const root = document.getElementById("root")
+const jsx = (
+    <div>
+        <p>React Fiber</p>
+    </div>
+)
+
+render(jsx, root)
